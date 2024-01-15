@@ -167,7 +167,7 @@ class App:
         self.w=GameManager()
 
         pyxel.init(160, 80, title="Pyxel Jump")
-        pyxel.load("assets/resource.pyxres")
+        pyxel.load("resource.pyxres")
         pyxel.run(self.update, self.draw) 
         
 
