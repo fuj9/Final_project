@@ -13,7 +13,6 @@ class Player:
         self.go=0
         self.cl=0
 
-        self.Y_GROUND=80
         self.ntile=[0,0]
     #プレイヤーが歩く
     def walk(self,Wal):
@@ -62,13 +61,13 @@ class Player:
         #穴に落ちている時は地面の判定が違う
         if wal.falling:
             #yが56になるまで落下アニメーション
-            if self.player_y >= self.Y_GROUND-24: # 地面についたら
-                self.player_y = self.Y_GROUND-24
+            if self.player_y >= 56: # 地面についたら
+                self.player_y = 56
                 self.vel = 0
                 self.canJump = True
         else:
-            if self.player_y >= self.Y_GROUND-32: # 地面についたら
-                self.player_y = self.Y_GROUND-32
+            if self.player_y >= 48: # 地面についたら
+                self.player_y = 48
                 self.vel = 0
                 self.canJump = True
                 self.fallend=False
@@ -167,7 +166,7 @@ class App:
         self.w=GameManager()
 
         pyxel.init(160, 80, title="Pyxel Jump")
-        pyxel.load("resource.pyxres")
+        pyxel.load("assets/resource.pyxres")
         pyxel.run(self.update, self.draw) 
         
 
@@ -198,6 +197,11 @@ class App:
         pyxel.bltm(-self.p.player_x+16,48,0,0,32,1000,32)
         pyxel.bltm(-self.p.player_x+16,self.w.wall_y,0,0,0,1000,24)
         pyxel.blt(8,self.p.player_y,0,8,0,8,8,0)
+
+        pyxel.rect(15,70, 124, 5, 7)
+        pyxel.rect(15,70, (self.p.player_x)/8, 5, 14)
+        pyxel.blt(7,68,0,8,16,8,8,1)
+        pyxel.blt(138,68,0,0,24,8,8,1)
         if(self.w.stopanim==True):
             pyxel.blt(8,self.p.player_y,0,8,8,8,8,0)
 
